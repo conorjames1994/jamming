@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import './App.css';
 import SearchResults from './SearchResults';
 import Playlist from './Playlist';
+import SearchBar from './SearchBar';
 
 
 function App() {
@@ -24,7 +25,7 @@ const [searchResults, setSearchResults] = useState([
 
 }]);
 
-const [playlistName, setPlaylistName] = useState('Playlist name example');
+const [playlistName, setPlaylistName] = useState('Enter playlist name ');
 const [playlist, setPlaylist] = useState([
   {artist: "K", 
     song: "example1",
@@ -58,12 +59,24 @@ const removeTrack = (track) => {
   setPlaylist(trackToRemain)
 }
 
+const changePlaylistName = (name) => {
+  setPlaylistName(name);
+}
+
+
+const savePlaylist = () => {
+  const trackURIs= playlist.map((t) => t.uri)
+}
+
+const search = (term) => {
+  console.log(term)
+}
   return (
     <div className="App">
       <header className="App-header">
-        
+        <SearchBar onSearch={search}/>
         <SearchResults userSearchResults={searchResults} onAdd={addTrack}/>
-        <Playlist  userPlaylist={playlist} userPlaylistName={playlistName} onRemove={removeTrack}/>
+        <Playlist  onSave={savePlaylist} onChangePlaylistName={changePlaylistName} userPlaylist={playlist} userPlaylistName={playlistName} onRemove={removeTrack}/>
         
     
       </header>

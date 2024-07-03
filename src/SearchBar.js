@@ -1,12 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-function SearchBar () {
+function SearchBar (props) {
+const [term, setTerm] = useState('')
 
+const passTerm = (term) => {
+  props.onSearch(term)
+}
+
+const handleTerm = ({target}) => {
+  setTerm(target.value)
+}
   return (
 <div>
   
-  <input id="search" type="search"></input>
-  <button>Search</button>
+  <input id="search" type="search" onChange={handleTerm}></input>
+  <button onClick={passTerm}>Search</button>
 </div>
 
   )
