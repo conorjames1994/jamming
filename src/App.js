@@ -4,6 +4,7 @@ import './App.css';
 import SearchResults from './SearchResults';
 import Playlist from './Playlist';
 import SearchBar from './SearchBar';
+import { Spotify } from './spotify';
 
 
 function App() {
@@ -69,6 +70,7 @@ const savePlaylist = () => {
 }
 
 const search = (term) => {
+  Spotify.search(term).then(result => setSearchResults(result))
   console.log(term)
 }
   return (
