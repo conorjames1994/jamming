@@ -4,46 +4,14 @@ import './App.css';
 import SearchResults from './SearchResults';
 import Playlist from './Playlist';
 import SearchBar from './SearchBar';
-import { Spotify } from './spotify';
+import { Spotify } from './spotify.js';
 
 
 function App() {
-const [searchResults, setSearchResults] = useState([
-  {artist: "Kanye West", 
-    song: "stronger",
-    album: "graduation",
-    id: 1
-},
-{artist: "Kanye West",
-  song: "We dont care",
-  album: "graduation",
-  id: 2
-},
-{artist: "Kanye West",
-  song: "through the wire",
-  album: "graduation",
-  id: 3
-
-}]);
+const [searchResults, setSearchResults] = useState([]);
 
 const [playlistName, setPlaylistName] = useState('Enter playlist name ');
-const [playlist, setPlaylist] = useState([
-  {artist: "K", 
-    song: "example1",
-    album: "graduation",
-    id: 4
-},
-{artist: "Kanye West",
-  song: "example 2",
-  album: "graduation",
-  id: 5
-},
-{artist: "Kanye West",
-  song: "example 3",
-  album: "graduation",
-  id: 6
-
-}]);
+const [playlist, setPlaylist] = useState([]);
 
 const addTrack = (track) => {
 const existingTrack = playlist.find((t) => t.id === track.id);
@@ -66,7 +34,9 @@ const changePlaylistName = (name) => {
 
 
 const savePlaylist = () => {
-  const trackURIs= playlist.map((t) => t.uri)
+  const trackURIs= playlist.map((t) => t.uri);
+  Spotify.savePlaylist(playlistName, trackURIs).then(() => {setPlaylistName("New Playlist"); 
+    setPlaylist([])})
 }
 
 const search = (term) => {
