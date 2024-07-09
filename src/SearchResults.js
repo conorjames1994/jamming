@@ -6,7 +6,7 @@ function SearchResults (props) {
  
   return (
     <div>
-      <h1>Spotify</h1>
+      <h1>Spotify Results</h1>
     <Tracklist userSearchResults={props.userSearchResults} onAdd={props.onAdd} isRemoval={false}/>
     </div>
   )

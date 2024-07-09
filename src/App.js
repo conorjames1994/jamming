@@ -5,6 +5,7 @@ import SearchResults from './SearchResults';
 import Playlist from './Playlist';
 import SearchBar from './SearchBar';
 import { Spotify } from './spotify.js';
+import styles from './App.module.css'
 
 
 function App() {
@@ -44,16 +45,20 @@ const search = (term) => {
   console.log(term)
 }
   return (
-    <div className="App">
-      <header className="App-header">
-        <SearchBar onSearch={search}/>
-        <SearchResults userSearchResults={searchResults} onAdd={addTrack}/>
-        <Playlist  onSave={savePlaylist} onChangePlaylistName={changePlaylistName} userPlaylist={playlist} userPlaylistName={playlistName} onRemove={removeTrack}/>
-        
+    <div className={styles.mainStyle}>
+      <div className={styles.searchBar}>
+        <SearchBar  onSearch={search}/>
+        </div>
+        <div className={styles.searchResults}>
+        <SearchResults  userSearchResults={searchResults} onAdd={addTrack}/>
+        </div>
+        <div className={styles.playlistName}>
+          <Playlist   onSave={savePlaylist} onChangePlaylistName={changePlaylistName} userPlaylist={playlist} userPlaylistName={playlistName} onRemove={removeTrack}/>
+       </div>
     
-      </header>
     </div>
   );
 }
 
 export default App;
+
