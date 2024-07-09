@@ -21,12 +21,18 @@ if(existingTrack){
   console.log('Track already exists')
 } else {
   setPlaylist(newTrack)
+  setSearchResults((prev) => {
+    return prev.filter((t) => t !== track)
+  })
 }
 }
 
 const removeTrack = (track) => {
   const trackToRemain = playlist.filter((t) => t.id  !== track.id )
   setPlaylist(trackToRemain)
+  setSearchResults((prev) => {
+    return [track, ...prev]
+  })
 }
 
 const changePlaylistName = (name) => {
